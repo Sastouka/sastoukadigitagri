@@ -389,8 +389,9 @@ if "Annee" not in all_columns_extended:
 # Partie PayPal et Achat de Plans
 # =============================================================================
 
-PAYPAL_CLIENT_ID = "ATyh7nhaFjHLqrD4Bvp1Y2tXLeRub-9733ONYXASKr0sq6YEvbZm1QjcToKzFVRv6dIcGmyudbZT6YyL"
-PAYPAL_SECRET = "EPysjDOTBgxhecho8xFualacKDeJn9udQebusanBYglTaBnW5lOT-Tg2v3gN5es_UJXXOGCVO0RG24bN"
+# Modification : les clés PayPal sont désormais chargées depuis les variables d'environnement
+PAYPAL_CLIENT_ID = os.environ.get("PAYPAL_CLIENT_ID") or "ATyh7nhaFjHLqrD4Bvp1Y2tXLeRub-9733ONYXASKr0sq6YEvbZm1QjcToKzFVRv6dIcGmyudbZT6YyL"
+PAYPAL_SECRET = os.environ.get("PAYPAL_SECRET") or "EPysjDOTBgxhecho8xFualacKDeJn9udQebusanBYglTaBnW5lOT-Tg2v3gN5es_UJXXOGCVO0RG24bN"
 PAYPAL_OAUTH_URL = "https://api-m.sandbox.paypal.com/v1/oauth2/token"
 PAYPAL_ORDER_API = "https://api-m.sandbox.paypal.com/v2/checkout/orders"
 
@@ -1473,4 +1474,4 @@ def change_theme():
 # =============================================================================
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    app.run(debug=True)
